@@ -6,11 +6,12 @@ import {useRouter} from "expo-router";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 import {COLORS, SIZES} from "../../../constants";
 import {useFetch} from "../../../hook/useFetch";
+import useFetchTest from "../../../hook/useFetchTest";
 
 const Popularjobs = () => {
     const router = useRouter()
 
-    const {data, isLoading, error} = useFetch('search', {
+    const {data, isLoading, error, temp} = useFetchTest('search', {
         query: 'React developer',
         num_pages: 1
     })
@@ -41,7 +42,7 @@ const Popularjobs = () => {
                 <Text>Somthing error</Text>
             ) : (
                 <FlatList
-                    data={data?.data}
+                    data={data}
                     renderItem={(item) => (
                         <PopularJobCard
                             key={item.job_id}
